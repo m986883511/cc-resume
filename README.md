@@ -1,27 +1,48 @@
-# Resume in python (using reportlab) [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+# 利用python生成简历
 
-This is an attempt to create an ATS friendly resume in python. I'm intending to maintain and enhance it as per my needs, or in case I get any feedback from the community. I'm trying to keep the code simple and easy to comprehend, and separating the data from the PDF generation logic. All the data that needs to be put in the resume is present in the ```data.json``` file
+这个项目能够自动生成简历，从yaml文件中获取简历数据，并能够只能一页。
 
-## Steps to run
-- Make sure you have python version 3 installed
-- Clone this repository
-- Create a virtual environment by running the command ```python3 -m venv env```
-- Activate the virtual environment by running the ```activate``` script for your respective operating system 
-- Install all the required libraries by running ```pip install -r requirements.txt```
-- Create a ```config.ini``` file as follows:
+## 如何使用
+- python3环境
+- 克隆项目
+- 创建虚拟环境并激活 ```python3 -m venv env```
+- 安装依赖 ```pip install -r requirements.txt```
 
+然后使用快速命令`cc-resume`，将显示交互式命令，会自动告知你本程序会搜索哪个目录的yaml数据文件，输入一个序号，然后将为你生成一页纸简历。
+
+```shell
+(py38) PS Z:\4t\mnt\code\mine\cc-resume> cc-resume.exe
+=== 本工具完全免费, 由B站UP主吵吵博士开发 ===
+find resume yaml in C:\Users\admin\AppData\Local\cc\resume
+please choose one yaml:
+1: author.yaml
+2: demo.yaml
+3: test20240418.yaml
+q: exit
+please input number[1-3]:1
+now generate pdf for author.yaml
+create pdf 1 times
+pdf page is 2, path is C:\Users\admin\AppData\Local\cc\resume\author.pdf
+page=2, font_size=15, padding=10, height=820.2897637795277, frame_height=733.4897637795277
+create pdf 2 times
+pdf page is 2, path is C:\Users\admin\AppData\Local\cc\resume\author.pdf
+page=2, font_size=15, padding=9, height=820.2897637795277, frame_height=737.4897637795277
+create pdf 3 times
+pdf page is 2, path is C:\Users\admin\AppData\Local\cc\resume\author.pdf
+page=2, font_size=15, padding=8, height=820.2897637795277, frame_height=773.4897637795277
+create pdf 4 times
+pdf page is 2, path is C:\Users\admin\AppData\Local\cc\resume\author.pdf
+page=2, font_size=15, padding=7, height=820.2897637795277, frame_height=798.4897637795277
+create pdf 5 times
+pdf page is 1, path is C:\Users\admin\AppData\Local\cc\resume\author.pdf
+page=1, font_size=15, padding=6, height=820.2897637795277, frame_height=24.48976377952772
+(py38) PS Z:\4t\mnt\code\mine\cc-resume> 
 ```
-[global]
-debug = false
-author = <Your name>
-email = <Your email>
-address = <Your address>
-phone = <Your phone number>
-```
-This will set the debug configuration as false, which will generate the resume without any grid lines. If debug is set to true it will generate the resume with gridlines
-- Run the ```main.py``` file by executing the command ```python3 main.py```. This will generate a resume in PDF format with the name ```output.pdf``` in the project directory
-- To customize the information in resume, just modify the ```data.json``` file with your required information
-- Personal information would be picked up from the ```config.ini``` file that is present in the project root
+
+从上面的实际操作记录来看，一共生成了6次，终于生成成功，并提示了最终的pdf文件的位置。
 
 ## Screenshot(s)
-![Generated resume](./res/screenshots/output.png)
+
+本项目自带的author.yaml生成的pdf如下：
+
+![image.png](https://gitee.com/m986883511/picture-bed/raw/master/PyPicGo/cs-20240419134328-tmp.png)

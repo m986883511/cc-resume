@@ -3,12 +3,14 @@ import shutil
 
 from cc_resume import utils
 from cc_resume import CURRENT_DIR
+from cc_resume.config import CONF
 
 
 class Cmd:
 
     def __init__(self):
         self.config_dir = utils.mkdir_config('resume')
+        print(f"=== {CONF.author_des} ===")
         print(f"find resume yaml in {self.config_dir}")
 
         self.config_file_path = os.path.join(self.config_dir, '.resume.conf')
@@ -26,7 +28,7 @@ class Cmd:
             self.config_file_path, 'resume', 'config_dir', self.config_dir, check_file_exist=False)
 
     def prompts(self):
-        print('please choose one:')
+        print('please choose one yaml:')
         for i, name in enumerate(self.data_resumes):
             print(f'{i+1}: {name}')
         print(f'q: exit')
@@ -44,7 +46,6 @@ class Cmd:
                 yaml_name = self.data_resumes[int(number) - 1]
                 print(f'now generate pdf for {yaml_name}')
                 utils.crudini_set_config(self.config_file_path, 'resume', 'name', yaml_name)
-                print(f'now run "cc-resume-generate-pdf"')
                 from cc_resume import main
                 main.main()
                 break
