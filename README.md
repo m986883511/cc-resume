@@ -41,8 +41,8 @@ page=1, font_size=15, padding=6, height=820.2897637795277, frame_height=24.48976
 
 从上面的实际操作记录来看，一共生成了6次，终于生成成功，并提示了最终的pdf文件的位置。
 
-## Screenshot(s)
+## 截图
 
-本项目自带的author.yaml生成的pdf如下：
+本项目自带的`author.yaml`生成的pdf如下：
 
 ![image.png](https://gitee.com/m986883511/picture-bed/raw/master/PyPicGo/cs-20240419134328-tmp.png)
