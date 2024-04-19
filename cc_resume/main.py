@@ -1,5 +1,4 @@
 import os
-import time
 
 from reportlab.pdfbase import pdfmetrics, ttfonts
 from reportlab.lib.pagesizes import A4
@@ -36,11 +35,11 @@ class FontStyle:
         return ParagraphStyle('normal', fontName=self.fonts.normal,
                               fontSize=font_size, alignment=alignment, leading=leading)
 
-    def get_bold_style(self, font_size=None, alignment=0, textColor=colors.black, leading=None):
+    def get_bold_style(self, font_size=None, alignment=0, text_color=colors.black, leading=None):
         font_size = font_size or self.default_font_size
         leading = leading or self.paragraph_leading
         return ParagraphStyle('bold', fontName=self.fonts.bold,
-                              fontSize=font_size, alignment=alignment, textColor=textColor, leading=leading)
+                              fontSize=font_size, alignment=alignment, textColor=text_color, leading=leading)
 
 
 class CreatePdf:
@@ -53,9 +52,9 @@ class CreatePdf:
         self.font_style = FontStyle(default_font_size=self.default_size, paragraph_leading=self.paragraph_leading)
         from cc_resume.config import Author
         from cc_resume import utils
-        yaml_path = os.path.join(CONF.resume.config_dir, 'resumes', CONF.resume.name)
+        yaml_path = os.path.join(CONF.resume.config_dir, CONF.resume.name)
         file_name, file_extension = os.path.splitext(CONF.resume.name)
-        self.output_path = os.path.join(CONF.resume.config_dir, 'output', f"{file_name}.pdf")
+        self.output_path = os.path.join(CONF.resume.config_dir, f"{file_name}.pdf")
         self.doc = SimpleDocTemplate(self.output_path, pagesize=A4, showBoundary=0, leftMargin=0.4 * inch,
                                      rightMargin=0.4 * inch,
                                      topMargin=top_margin, bottomMargin=bottom_margin, title=f"Resume of {Author.name}",
@@ -65,7 +64,7 @@ class CreatePdf:
         self.col_width = [FULL_COLUMN_WIDTH * 0.75, FULL_COLUMN_WIDTH * 0.25]
         self.build_elements = []
 
-    def appendSectionTableStyle(self, table_styles, running_row_index):
+    def append_section_table_style(self, table_styles, running_row_index):
         table_styles.append(('TOPPADDING', (0, running_row_index), (1, running_row_index), self.default_title_padding))
         table_styles.append(('BOTTOMPADDING', (0, running_row_index), (1, running_row_index), self.default_title_padding))
         table_styles.append(('LINEBELOW', (0, running_row_index), (-1, running_row_index), 1, colors.black))
@@ -78,9 +77,9 @@ class CreatePdf:
         # Append education heading
         table_data.append(
             [Paragraph("教育经历", self.font_style.get_bold_style(
-                font_size=self.default_size+1, textColor=CONF.resume.title_color))]
+                font_size=self.default_size+1, text_color=CONF.resume.title_color))]
         )
-        self.appendSectionTableStyle(table_styles, running_row_index)
+        self.append_section_table_style(table_styles, running_row_index)
         running_row_index += 1
 
         # Append education
@@ -113,9 +112,9 @@ class CreatePdf:
         running_row_index = 0
         # Append education heading
         table_data.append(
-            [Paragraph("工作经历", self.font_style.get_bold_style(font_size=self.default_size+1, textColor=CONF.resume.title_color))]
+            [Paragraph("工作经历", self.font_style.get_bold_style(font_size=self.default_size+1, text_color=CONF.resume.title_color))]
         )
-        self.appendSectionTableStyle(table_styles, running_row_index)
+        self.append_section_table_style(table_styles, running_row_index)
         running_row_index += 1
 
         # Append education
@@ -156,9 +155,9 @@ class CreatePdf:
         running_row_index = 0
         # Append education heading
         table_data.append(
-            [Paragraph("工作主要项目经历", self.font_style.get_bold_style(font_size=self.default_size+1, textColor=CONF.resume.title_color))]
+            [Paragraph("工作主要项目经历", self.font_style.get_bold_style(font_size=self.default_size+1, text_color=CONF.resume.title_color))]
         )
-        self.appendSectionTableStyle(table_styles, running_row_index)
+        self.append_section_table_style(table_styles, running_row_index)
         running_row_index += 1
 
         # Append education
@@ -198,9 +197,9 @@ class CreatePdf:
         # Append education heading
         table_data.append(
             [Paragraph("个人信息", self.font_style.get_bold_style(
-                font_size=self.default_size+1, textColor=CONF.resume.title_color))]
+                font_size=self.default_size+1, text_color=CONF.resume.title_color))]
         )
-        self.appendSectionTableStyle(table_styles, running_row_index)
+        self.append_section_table_style(table_styles, running_row_index)
         running_row_index += 1
 
         ptext = f"<font face=normal size={self.default_size}>基本信息: </font>" \
@@ -234,11 +233,11 @@ class CreatePdf:
         table_data.append(
             [
                 Paragraph("个人开源项目", self.font_style.get_bold_style(
-                    font_size=self.default_size + 1, textColor=colors.orange)),
+                    font_size=self.default_size + 1, text_color=colors.orange)),
                 Paragraph("")
             ]
         )
-        self.appendSectionTableStyle(table_styles, running_row_index)
+        self.append_section_table_style(table_styles, running_row_index)
         running_row_index += 1
 
         for project in data:
@@ -265,11 +264,11 @@ class CreatePdf:
         table_data.append(
             [
                 Paragraph("个人总结", self.font_style.get_bold_style(
-                    font_size=self.default_size + 1, textColor=CONF.resume.title_color)),
+                    font_size=self.default_size + 1, text_color=CONF.resume.title_color)),
                 Paragraph("")
             ]
         )
-        self.appendSectionTableStyle(table_styles, running_row_index)
+        self.append_section_table_style(table_styles, running_row_index)
         running_row_index += 1
 
         for line in data:
@@ -300,7 +299,7 @@ class CreatePdf:
 
 def main():
     config_dir = utils.mkdir_config('resume')
-    config_file_path = os.path.join(config_dir, 'resume.conf')
+    config_file_path = os.path.join(config_dir, '.resume.conf')
     CONF(default_config_files=[config_file_path])
     create_one_page_pdf()
 

@@ -1,4 +1,3 @@
-import glob
 import os
 import shutil
 
@@ -10,25 +9,24 @@ class Cmd:
 
     def __init__(self):
         self.config_dir = utils.mkdir_config('resume')
-        self.config_resumes_dir = os.path.join(self.config_dir, 'resumes')
-        self.config_output_dir = os.path.join(self.config_dir, 'output')
-        print(f"self.config_dir={self.config_dir}")
-        
-        self.data_resumes = os.listdir(self.config_resumes_dir)
-        self.config_file_path = os.path.join(self.config_dir, 'resume.conf')
-        self.output_dir = os.path.join(self.config_dir, 'output')
+        print(f"find resume yaml in {self.config_dir}")
+
+        self.config_file_path = os.path.join(self.config_dir, '.resume.conf')
         self.depend()
+        self.data_resumes = self.get_resume_yaml()
+
+    def get_resume_yaml(self):
+        yaml_files = [f for f in os.listdir(self.config_dir) if f.endswith('.yaml')]
+        return yaml_files
 
     def depend(self):
         project_resumes_dir = os.path.join(CURRENT_DIR, 'resumes')
-        shutil.copytree(project_resumes_dir, self.config_resumes_dir, dirs_exist_ok=True)
+        shutil.copytree(project_resumes_dir, self.config_dir, dirs_exist_ok=True)
         utils.crudini_set_config(
             self.config_file_path, 'resume', 'config_dir', self.config_dir, check_file_exist=False)
-        os.makedirs(self.config_resumes_dir, exist_ok=True)
-        os.makedirs(self.config_output_dir, exist_ok=True)
 
     def prompts(self):
-        print('choose one:')
+        print('please choose one:')
         for i, name in enumerate(self.data_resumes):
             print(f'{i+1}: {name}')
         print(f'q: exit')
