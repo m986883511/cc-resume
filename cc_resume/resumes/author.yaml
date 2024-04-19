@@ -1,0 +1,61 @@
+author:
+  name: "吵吵博士"
+  msg: "2020年1月出生，地球人"
+  contact: "联系方式: 159xxxxxxxx，<a href=\"https://space.bilibili.com/51277062\" color=\"blue\">B站UP主吵吵博士</a>，<a href=\"https://github.com/m986883511\" color=\"blue\">GitHub主页</a>，<a href=\"https://blog.csdn.net/m_986883511\" color=\"blue\">CSDN主页</a>"
+
+education:
+  - degree: "全日制婴幼儿 干饭比赛第一名"
+    university: "五星上将幼儿园"
+    location: "江苏南京"
+    year: "2020.01-2021.01"
+  - degree: "全日制小学生 睡觉比赛第一名"
+    university: "五星上将小学"
+    location: "江苏南京"
+    year: "2021.01-至今"
+
+experience:
+  - name: "码农"
+    company: "Github开源公司"
+    location: "江苏南京"
+    duration: "2022.05-2024.03"
+    description:
+      - "随便写点代码"
+
+  - name: "UP主"
+    company: "Bilibili上市公司"
+    location: "江苏南京"
+    duration: "2021.12-2022.04"
+    description:
+      - "随便发点视频"
+
+
+work_projects:
+  - role: "主要开发者 （Github项目）"
+    name: "cc-aio"
+    location: "江苏南京"
+    duration: "2023.07-2024.03"
+    description:
+      - "提供一个tui界面工具，制作了离线部署包，能够在tui界面上完成samba、alist、wireguard、公网ip获取、ddns、核显直通和硬盘直通挂载等安装或配置，实现对PVE的all-in-one快速部署。"
+      - "技能：pve python tui"
+  - role: "主要开发者 （Github项目）"
+    name: "cc-picgo"
+    location: "江苏南京"
+    duration: "2021.12-2022.04"
+    description:
+      - "运行在windows上的api后台，能够配合obsidian使用，将粘贴在ob中的图片自动转化为gitee或github等图床链接，减少markdown笔记文件大小。"
+      - "技能：python flask"
+
+open_projects:
+  - name: "cc-aio"
+    description: "提供一个tui界面工具，制作了离线部署包，能够在tui界面上完成samba、alist、wireguard、公网ip获取、ddns、核显直通和硬盘直通挂载等安装或配置，实现对PVE的all-in-one快速部署。"
+    link: "<a href=\"https://github.com/m986883511/cc-aio\" color=\"blue\">(GitHub)</a>"
+  - name: "cc-picgo"
+    description: "运行在windows上的api后台，能够配合obsidian使用，将粘贴在ob中的图片自动转化为gitee或github等图床链接，减少markdown笔记文件大小。"
+    link: "<a href=\"https://github.com/m986883511/cc-picgo\" color=\"blue\">(GitHub)</a>"
+  - name: "cc-resume"
+    description: "通过python的reportlab库，结合提供的yaml简历数据，生成pdf简历，能够智能一页，本简历就是此项目生成。"
+    link: "<a href=\"https://github.com/m986883511/cc-resume\" color=\"blue\">(GitHub)</a>"
+
+summary:
+  - "1、我是吵吵博士，我为自己带盐，删掉这句，不然你面试挂了"
+  - "2、个人喜欢研究新技术，自学能力强，动手能力强，爱逛github和开源社区"

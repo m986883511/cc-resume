@@ -1,0 +1,10 @@
+env
+.vscode
+output.pdf
+config.ini
+*.pdf
+.idea
+cc_resume/data/author.yaml
+demo/
+*.egg-info
+*.pyc
